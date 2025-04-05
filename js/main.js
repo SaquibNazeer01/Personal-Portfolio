@@ -233,12 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initRadarChart();
     
-    // Add this if using GitHub projects
-    if (document.getElementById('projects-container')) {
-        fetchGitHubProjects();
-    }
 });
-
 // GitHub Projects Fetch (optional)
 async function fetchGitHubProjects() {
     try {
