@@ -63,7 +63,7 @@ function loadManualProjects() {
             {
                 name: "Face Recognition Attendance system",
                 description: "Developing an attendance system which will use students face to register the attendance of the respected students.",
-                status: "completed",
+                status: "under development",
                 githubUrl: null,
                 deployUrl: null,
                 imageUrl: "assets/images/projects/attendance.png",
