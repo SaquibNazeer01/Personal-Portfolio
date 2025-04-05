@@ -59,6 +59,15 @@ function loadManualProjects() {
                 deployUrl: "https://vercel.com/saquib-nazeers-projects/mining-game/G6KZYstKAbSccXmHkiKSpqE3TLMH",
                 imageUrl: "assets/images/projects/mining.png",
                 languages: ["JavaScript"]
+            },
+            {
+                name: "Face Recognition Attendance system",
+                description: "Developing an attendance system which will use students face to register the attendance of the respected students.",
+                status: "completed",
+                githubUrl: null,
+                deployUrl: null,
+                imageUrl: "assets/images/projects/attendance.png",
+                languages: ["Python"]
             }
         ];
 
