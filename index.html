@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saquib Nazeer | Aspiring Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/glassmorphism.css">
+    <link rel="stylesheet" href="css/themes/dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Animated Gradient Border -->
+    <div class="gradient-border"></div>
+    
+    <!-- Floating Cursor Effect -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Glass Navigation -->
+        <header class="glass-nav">
+            <div class="navbar">
+                <div class="logo" data-text=">_">>_</div>
+                <nav class="nav-links">
+                <ul>
+                    <li><a href="#about" class="nav-link hover-underline">About</a></li>
+                    <li><a href="#projects" class="nav-link hover-underline">Projects</a></li>
+                    <li><a href="#skills" class="nav-link hover-underline">Skills</a></li>
+                    <li><a href="#resume" class="nav-link hover-underline">Resume</a></li>
+                    <li><a href="#contact" class="nav-link hover-underline">Contact</a></li>
+                    <li>
+                        <button id="theme-toggle" class="icon-btn pulse">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <div class="hamburger"></div>
+            </div>
+        </div>
+    </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right">
+                    <h4 class="subtitle"> Software Developer</h4>
+                    <h1 class="title glitch" data-text="Alex Chen">Saquib Nazeer</h1></div>
+                    <div class="typewriter-container">
+                        <p class="typewriter" data-text='["Full-Stack Engineer", "Open Source Contributor", "Tech Speaker", "Problem Solver"]'></p>
+                        <span class="typewriter-cursor">|</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary pulse-on-hover">View Work</a>
+                        <a href="#contact" class="btn btn-outline hover-effect">Contact Me</a>
+                    </div>
+                    
+                </div>
+                
+                <div class="hero-image" data-aos="fade-left">
+                    <div class="image-wrapper">
+                        <img src="assets/images/profile1.jpg" alt="Alex Chen" class="profile-img">
+                        <div class="image-border-animation"></div>
+                        <div class="tech-icons">
+                            <i class="fab fa-java floating-icon" style="--delay: 0s"></i>
+                            <i class="fab fa-js floating-icon" style="--delay: 0.3s"></i>
+                            <i class="fab fa-python floating-icon" style="--delay: 0.6s"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p><p><div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span>Scroll Down</span></p></p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="terminal-card" data-aos="zoom-in">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="title">about.sh</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="prompt">$</span> cat bio.txt</p>
+                    <p>Hello! I'm Saquib Nazeer, an aspiring Software Developer.</p>
+                    <p>Specializing in Java, JavaScript, Python ecosystems, and system architecture.</p>
+                    <p>Passionate about solving complex problems.</p>
+                    <p>Avid user of technology.</p>
+                    <p><span class="prompt">$</span> <span class="cursor">|</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title" data-aos="fade-up">Featured <span>Projects</span></h2>
+            <div class="projects-grid" id="projects-container">
+                <!-- Dynamically loaded from GitHub API -->
+                <div class="project-card skeleton" data-aos="fade-up">
+                    <div class="project-header skeleton"></div>
+                    <div class="project-content skeleton"></div>
+                    <div class="project-footer skeleton"></div>
+                </div>
+                <div class="project-card skeleton" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-header skeleton"></div>
+                    <div class="project-content skeleton"></div>
+                    <div class="project-footer skeleton"></div>
+                </div>
+                <div class="project-card skeleton" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-header skeleton"></div>
+                    <div class="project-content skeleton"></div>
+                    <div class="project-footer skeleton"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title" data-aos="fade-up">Technical <span>Skills</span></h2>
+            <div class="skills-container">
+                <div class="radar-chart-container" data-aos="fade-right">
+                    <canvas id="skills-chart" width="400" height="400"></canvas>
+                </div>
+                <div class="tech-stack" data-aos="fade-left">
+                    <div class="tech-stack-details">
+                        <div class="tech-stack-category">
+                            <h4><i class="fas fa-code"></i> Languages</h4>
+                            <div class="tech-tags">
+                                <div class="tech-tag">Java</div>
+                                <div class="tech-tag">JavaScript</div>
+                                <div class="tech-tag">Python</div>
+                                <div class="tech-tag">C</div>
+                                <div class="tech-tag">C#</div>
+                                <div class="tech-tag">PHP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-category">
+                            <h4><i class="fas fa-laptop-code"></i> Web Development</h4>
+                            <div class="tech-tags">
+                                <div class="tech-tag">HTML5</div>
+                                <div class="tech-tag">CSS3</div>
+                                <div class="tech-tag">React</div>
+                                <div class="tech-tag">Node.js</div>
+                                <div class="tech-tag">Express</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-category">
+                            <h4><i class="fas fa-database"></i> Database</h4>
+                            <div class="tech-tags">
+                                <div class="tech-tag">MySQL</div>
+                                <div class="tech-tag">MongoDB</div>
+                                <div class="tech-tag">PostgreSQL</div>
+                                <div class="tech-tag">Firebase</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-category">
+                            <h4><i class="fas fa-tools"></i> Tools & Platforms</h4>
+                            <div class="tech-tags">
+                                <div class="tech-tag">Git</div>
+                                <div class="tech-tag">Docker</div>
+                                <div class="tech-tag">AWS</div>
+                                <div class="tech-tag">VS Code</div>
+                                <div class="tech-tag">Jupyter Notebook</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="section">
+            <div class="resume-container" data-aos="fade-up">
+                <h2 class="section-title">My <span>Resume</span></h2>
+                <div class="resume-card glass-card">
+                    <div class="resume-header">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Professional Resume</h3>
+                    </div>
+                    <div class="resume-content">
+                        <p>Download my complete resume to view my professional experience, education, and skills in detail.</p>
+                        <div class="resume-links">
+                            <a href="https://pdflink.to/skb" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                            <a href="https://www.linkedin.com/in/saquib-nazeer-2b3043326?trk=contact-info" target="_blank" class="btn btn-outline">
+                                | <i class="fab fa-linkedin-in"></i> | View LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="resume-platforms">
+                        <h4>Coding Profiles:</h4>
+                        <div class="platform-badges">
+                            <a href="https://leetcode.com/your-profile" target="_blank" class="platform-badge">
+                                <img src="assets/icons/leetcode1.png" alt="LeetCode">
+                                <span>LeetCode</span>
+                            </a>
+                            <a href="https://hackerrank.com/your-profile" target="_blank" class="platform-badge">
+                                <img src="assets/icons/hackerrank.png" alt="HackerRank">
+                                <span>HackerRank</span>
+                            </a>
+                            <a href="https://github.com/SaquibNazeer01" target="_blank" class="platform-badge">
+                                <img src="assets/icons/github.png" alt="GitHub">
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Get In <span>Touch</span></h2>
+            <div class="contact-container">
+                <div class="contact-info glass-card" data-aos="fade-right">
+                    <h3>Contact Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <a href="mailto:bhatsaakib505@gmail.com.com">Saquib@developer.com</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Phone</h4>
+                                <a href="tel:+918899779073">+91 8899779073</a>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Location</h4>
+                                <p>J&K, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="availability">
+                        <h4>Availability</h4>
+                        <p>Currently available for full-time opportunities and freelance projects</p>
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            <span>Open to work</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form glass-card" 
+      action="https://formspree.io/f/mwpleavq"
+      method="POST"
+      data-aos="fade-left">
+  <h3>Send Me a Message</h3>
+  
+  <div class="form-group">
+    <input type="text" id="name" name="name" required>
+    <label for="name">Your Name</label>
+    <div class="focus-border"></div>
+  </div>
+  
+  <div class="form-group">
+    <input type="email" id="email" name="email" required>
+    <label for="email">Your Email</label>
+    <div class="focus-border"></div>
+  </div>
+  
+  <div class="form-group">
+    <input type="text" id="subject" name="subject" required>
+    <label for="subject">Subject</label>
+    <div class="focus-border"></div>
+  </div>
+  
+  <div class="form-group">
+    <textarea id="message" name="message" required></textarea>
+    <label for="message">Your Message</label>
+    <div class="focus-border"></div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary btn-submit">
+    <span>Send Message</span>
+    <i class="fas fa-paper-plane"></i>
+  </button>
+  
+  <!-- Formspree hidden field (optional) -->
+  <input type="hidden" name="_next" value="https://thank-you.html">
+</form>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">>_ Saquib Nazeer</div>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/SaquibNazeer01" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/saquib-nazeer-2b3043326" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://leetcode.com/Bhat_Saakib019" target="_blank" aria-label="LeetCode">
+                        <i class="fas fa-code"></i>
+                    </a>
+                    <a href="https://instagram.com/Bhat_Saakib019" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/Bhatsaakib019" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Saquib Nazeer. All rights reserved.</p>
+                <p>Built with <i class="fas fa-heart"></i> and <i class="fas fa-code"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/scrollEffects.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/github.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

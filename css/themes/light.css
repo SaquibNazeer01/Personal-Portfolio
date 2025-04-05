@@ -1,0 +1,84 @@
+:root {
+    --primary: #5e56e6;
+    --primary-dark: #4a42d8;
+    --accent: #3a86ff;
+    --text: #2d3748;
+    --text-dark: #1a202c;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --glass: rgba(255, 255, 255, 0.8);
+    --success: #28a745;
+    --error: #dc3545;
+    --code-bg: #f5f5f5;
+}
+
+body {
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+.glass-nav {
+    background: var(--glass);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.terminal-card, .project-card, .glass-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.terminal-header {
+    background: #e9ecef;
+    color: var(--text-dark);
+}
+
+.terminal-body {
+    color: var(--text-dark);
+}
+
+.prompt {
+    color: var(--primary);
+}
+
+.typewriter {
+    color: var(--primary-dark);
+}
+
+.btn-outline {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: rgba(94, 86, 230, 0.1);
+}
+
+.tech-tag {
+    background: rgba(94, 86, 230, 0.1);
+    color: var(--primary-dark);
+}
+
+.tech-tag:hover {
+    background: var(--primary);
+    color: white;
+}
+
+pre code {
+    background: var(--code-bg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.platform-badge {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.platform-badge:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-group label {
+    color: rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,13 @@
+:root {
+    --primary: #6c63ff;
+    --primary-dark: #564fd8;
+    --accent: #4af626;
+    --text: #e0e0e0;
+    --text-dark: #333;
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --glass: rgba(30, 30, 30, 0.5);
+    --success: #4af626;
+    --error: #ff5f56;
+    --code-bg: #1e1e1e;
+}
