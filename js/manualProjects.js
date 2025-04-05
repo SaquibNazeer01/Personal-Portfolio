@@ -66,7 +66,7 @@ function loadManualProjects() {
                 status: "under development",
                 githubUrl: null,
                 deployUrl: null,
-                imageUrl: "assets/images/projects/attendance.png",
+                imageUrl: "assets/images/projects/Attendance.JPG",
                 languages: ["Python"]
             }
         ];
