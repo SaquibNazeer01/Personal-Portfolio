@@ -68,6 +68,15 @@ function loadManualProjects() {
                 deployUrl: "https://youtu.be/zxWtZIFV2-U?si=a2Fitm5zYI5f07B5",
                 imageUrl: "assets/images/projects/Attendance.JPG",
                 languages: ["Python"]
+            },
+            {
+                name: "Smart Screen Controller",
+                description: "Smart Classroom Controller – Control slides and zoom using hand gestures and voice commands for seamless, touch-free teaching.",
+                status: "Completed",
+                githubUrl: null,
+                deployUrl: "https://youtu.be/0fmJsbo6oIk?si=pGdZCy7MdWNg9LZR",
+                imageUrl: "assets/images/projects/smartcontroller.JPG",
+                languages: ["Python"]
             }
         ];
 
