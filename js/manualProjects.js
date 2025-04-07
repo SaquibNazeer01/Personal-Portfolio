@@ -75,7 +75,7 @@ function loadManualProjects() {
                 status: "Completed",
                 githubUrl: null,
                 deployUrl: "https://youtu.be/0fmJsbo6oIk?si=pGdZCy7MdWNg9LZR",
-                imageUrl: "assets/images/projects/smartcontroller.JPG",
+                imageUrl: "assets/images/projects/IMG_6941.jpeg",
                 languages: ["Python"]
             }
         ];
