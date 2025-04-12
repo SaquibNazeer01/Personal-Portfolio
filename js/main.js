@@ -99,20 +99,25 @@ if (typewriterElement) {
 }
 
 // Form Submission with Formspree
-const contactForm = document.querySelector('.contact-form');
+const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const submitBtn = contactForm.querySelector('.btn-submit');
-        const formData = new FormData(contactForm);
-        
+        const submitBtn = this.querySelector('.btn-submit');
+        const btnSpan = submitBtn.querySelector('span');
+        const btnIcon = submitBtn.querySelector('i');
+        const originalBtnText = btnSpan.textContent;
+        const originalBtnIcon = btnIcon.className;
+
         // Show loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
+        btnSpan.textContent = 'Sending...';
+        btnIcon.className = 'fas fa-spinner fa-spin';
 
         try {
-            const response = await fetch(contactForm.action, {
+            const formData = new FormData(this);
+            const response = await fetch(this.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -121,31 +126,29 @@ if (contactForm) {
             });
 
             if (response.ok) {
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                contactForm.reset();
+                // Success: Show checkmark & redirect
+                btnIcon.className = 'fas fa-check';
+                btnSpan.textContent = 'Sent!';
                 
-                // Redirect if _next is specified
-                const nextUrl = contactForm.querySelector('[name="_next"]')?.value;
-                if (nextUrl) {
-                    setTimeout(() => {
-                        window.location.href = nextUrl;
-                    }, 2000);
-                } else {
-                    setTimeout(() => {
-                        submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
-                        submitBtn.disabled = false;
-                    }, 2000);
-                }
+                // Redirect to thank-you.html after 1.5 seconds
+                setTimeout(() => {
+                    window.location.href = this.querySelector('[name="_next"]').value;
+                }, 1500);
             } else {
                 throw new Error('Form submission failed');
             }
         } catch (error) {
-            console.error('Form submission error:', error);
-            submitBtn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error';
+            console.error('Error:', error);
+            // Error state
+            btnIcon.className = 'fas fa-exclamation-triangle';
+            btnSpan.textContent = 'Failed! Try Again';
+            
+            // Reset after 3 seconds
             setTimeout(() => {
-                submitBtn.innerHTML = '<span>Try Again</span><i class="fas fa-paper-plane"></i>';
+                btnSpan.textContent = originalBtnText;
+                btnIcon.className = originalBtnIcon;
                 submitBtn.disabled = false;
-            }, 2000);
+            }, 3000);
         }
     });
 }
@@ -228,12 +231,6 @@ if (cursor && cursorFollower) {
     });
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    initRadarChart();
-    
-});
 // GitHub Projects Fetch (optional)
 async function fetchGitHubProjects() {
     try {
@@ -272,3 +269,10 @@ async function fetchGitHubProjects() {
         }
     }
 }
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    initRadarChart();
+    // fetchGitHubProjects(); // Uncomment if you want to use GitHub projects
+});
