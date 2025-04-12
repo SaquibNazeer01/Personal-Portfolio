@@ -253,43 +253,45 @@
                         </div>
                     </div>
                 </div>
-               <form id="contactForm" action="https://formspree.io/f/xgvadyjk" method="POST">
-     
-  <h3>Send Me a Message</h3>
-  
-  <div class="form-group">
-    <input type="text" id="name" name="name" required>
-    <label for="name">Your Name</label>
-    <div class="focus-border"></div>
-  </div>
-  
-  <div class="form-group">
-    <input type="email" id="email" name="email" required>
-    <label for="email">Your Email</label>
-    <div class="focus-border"></div>
-  </div>
-  
-  <div class="form-group">
-    <input type="text" id="subject" name="subject" required>
-    <label for="subject">Subject</label>
-    <div class="focus-border"></div>
-  </div>
-  
-  <div class="form-group">
-    <textarea id="message" name="message" required></textarea>
-    <label for="message">Your Message</label>
-    <div class="focus-border"></div>
-  </div>
-  
-  <button type="submit" class="btn btn-primary btn-submit">
-    <span>Send Message</span>
-    <i class="fas fa-paper-plane"></i>
-  </button>
-  
-  <!-- Formspree hidden field (optional) -->
-  <input type="hidden" name="_next" value="/thank-you.html">
-</form>
-            </div>
+               <div class="contact-form">
+    <form id="contactForm" action="https://formspree.io/f/xgvadyjk" method="POST">
+        <!-- Formspree hidden fields -->
+        <input type="hidden" name="_next" value="/thank-you.html">
+        <input type="hidden" name="_subject" value="New Message From Your Website">
+        <input type="text" name="_gotcha" style="display:none"> <!-- Anti-spam honeypot -->
+        
+        <h3>Send Me a Message</h3>
+        
+        <div class="form-group">
+            <input type="text" id="name" name="name" required placeholder=" ">
+            <label for="name">Your Name</label>
+            <div class="focus-border"></div>
+        </div>
+        
+        <div class="form-group">
+            <input type="email" id="email" name="email" required placeholder=" ">
+            <label for="email">Your Email</label>
+            <div class="focus-border"></div>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" id="subject" name="subject" required placeholder=" ">
+            <label for="subject">Subject</label>
+            <div class="focus-border"></div>
+        </div>
+        
+        <div class="form-group">
+            <textarea id="message" name="message" required placeholder=" "></textarea>
+            <label for="message">Your Message</label>
+            <div class="focus-border"></div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-submit">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </form>
+</div>
         </section>
     </div>
 
