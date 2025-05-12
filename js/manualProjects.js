@@ -16,6 +16,15 @@ function loadManualProjects() {
                 languages: ["PHP", "JavaScript"]
             },
             {
+                name: "EliteStyle",
+                description: "A fully functional eCommerce platform built with PHP, featuring dynamic product and category management, secure cart and checkout functionality, and a professionally redesigned frontend for a modern shopping experience. The system supports real-time product listings, category filtering, and seamless integration between the frontend UI and backend logic.",
+                status: "completed",
+                githubUrl: "https://github.com/SaquibNazeer01/EliteStyle",
+                deployUrl: null,
+                imageUrl: "assets/images/projects/elitestyle.jpg",
+                languages: ["PHP"]
+            },
+            {
                 name: "Cricket Tournament Manager",
                 description: "Built a web-based tournament management system, automating team registration and fee tracking. Integrated WhatsApp API for real-time notifications.",
                 status: "under-development",
