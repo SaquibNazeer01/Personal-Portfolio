@@ -21,7 +21,7 @@ function loadManualProjects() {
                 status: "completed",
                 githubUrl: "https://github.com/SaquibNazeer01/EliteStyle",
                 deployUrl: null,
-                imageUrl: "assets/images/projects/elitestyle.png",
+                imageUrl: "assets/images/projects/elitestyle",
                 languages: ["PHP"]
             },
             {
