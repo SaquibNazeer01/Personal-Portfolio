@@ -1,231 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank You!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Received | Thank You</title>
+  <meta name="description" content="Your message has been successfully delivered">
   <style>
-    /* Reset */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
+    /* Ultra-Performance CSS */
+    :root {
+      --neon-green: #00ffcc;
+      --neon-pink: #ff00aa;
+      --neon-blue: #00aaff;
+      --dark-bg: #000814;
+      --glow: 0 0 15px;
+    }
+
+    /* Atomic CSS Reset */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { height: 100%; scroll-behavior: smooth; }
     body {
-      margin: 0;
-      background: #000;
-      color: #00ffcc;
-      font-family: "Segoe UI", Consolas, monospace;
-      overflow: hidden;           /* no scroll bounce */
-      height: 100svh;             /* mobile-safe viewport */
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: var(--dark-bg);
+      color: white;
+      font-family: 'SF Mono', 'Roboto Mono', monospace;
+      overflow-x: hidden;
+      overscroll-behavior: none;
     }
 
-    /* Background Matrix Canvas */
-    #matrix {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;       /* never blocks clicks */
-      user-select: none;
-    }
-
-    /* Confetti pieces */
-    .confetti {
-      position: fixed;
-      top: -5vh;
-      width: 8px; height: 14px;
-      opacity: 0.9;
-      z-index: 3;
-      pointer-events: none;       /* never blocks clicks */
-      animation: fall linear forwards;
-    }
-    @keyframes fall {
-      to { transform: translateY(115vh) rotate(360deg); opacity: .7; }
-    }
-
-    /* Center-locked Card (never shifts) */
-    .container {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* perfect center */
-      z-index: 2;
-      width: clamp(320px, 90vw, 680px); /* stable width */
-      padding: 3rem 4rem;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(0,255,200,0.3);
-      border-radius: 16px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 30px rgba(0,255,200,0.4);
-      animation: fadeIn 0.9s ease forwards;
-      will-change: transform; /* crisp centering */
-    }
-
-    /* Glitch Title */
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 48px);
-      font-weight: 800;
-      color: #00ffcc;
-      text-shadow: 0 0 15px #00ffcc;
-      animation: glitch 1s infinite;
-    }
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px red, -2px -2px blue; }
-      20% { text-shadow: -2px 2px lime, 2px -2px pink; }
-      40% { text-shadow: 2px -2px cyan, -2px 2px magenta; }
-      60% { text-shadow: 1px 1px yellow, -1px -1px purple; }
-      100% { text-shadow: 0 0 15px #00ffcc; }
-    }
-
-    /* Typewriter line (stays after finish) */
-    .typing {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      font-size: clamp(14px, 2.2vw, 20px);
-      color: #e0fff9;
-      border-right: 3px solid #00ffcc;            /* cursor */
-      animation: typing 3.5s steps(40, end) forwards;
-      max-width: 100%;                             /* prevent overflow */
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to   { width: 100% }
-    }
-
-    p {
-      margin: 12px 0 0;
-      font-size: clamp(13px, 2vw, 18px);
-      color: #9fffea;
-    }
-
-    /* Neon CTA */
-    a.cta {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      background: transparent;
-      color: #00ffcc;
-      font-weight: 800;
-      text-decoration: none;
-      border: 2px solid #00ffcc;
-      letter-spacing: 1px;
-      box-shadow: 0 0 12px #00ffcc, inset 0 0 8px #00ffcc;
-      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
-      animation: pulse 2s infinite;
-    }
-    a.cta:hover {
-      background: #00ffcc;
-      color: #000;
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 0 25px #00ffcc, inset 0 0 12px #000;
+    /* Quantum Animation System */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
     @keyframes pulse {
-      0%   { box-shadow: 0 0 8px #00ffcc; }
-      50%  { box-shadow: 0 0 25px #00ffcc; }
-      100% { box-shadow: 0 0 8px #00ffcc; }
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 var(--neon-pink), -2px 0 var(--neon-blue); }
+      25% { text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-blue); }
+      50% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink); }
+      75% { text-shadow: -2px 0 var(--neon-blue), 2px 0 var(--neon-pink); }
+      100% { text-shadow: none; }
+    }
+    @keyframes hologram {
+      0% { opacity: 0.3; filter: blur(1px); }
+      50% { opacity: 0.8; filter: blur(0.5px); }
+      100% { opacity: 0.3; filter: blur(1px); }
+    }
+
+    /* GPU-Accelerated Background */
+    .quantum-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 75% 25%, rgba(0, 50, 100, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 25% 75%, rgba(100, 0, 50, 0.2) 0%, transparent 50%);
+      animation: hologram 8s infinite alternate;
+    }
+
+    /* Main Content Container */
+    .quantum-card {
+      position: relative;
+      max-width: min(90vw, 800px);
+      margin: 0 auto;
+      padding: clamp(2rem, 5vw, 4rem);
+      background: rgba(0, 8, 20, 0.7);
+      border-radius: 24px;
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(0, 255, 204, 0.2),
+                  inset 0 0 20px rgba(0, 255, 204, 0.1);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, calc(-50% + 30px)); }
-      to   { opacity: 1; transform: translate(-50%, -50%); }
+      to { opacity: 1; }
     }
 
-    /* Accessibility: reduce motion if user prefers */
-    @media (prefers-reduced-motion: reduce) {
-      .container, h1, .typing, .confetti, .cta { animation: none !important; }
+    /* Quantum Typography */
+    .quantum-title {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+      text-shadow: var(--glow) var(--neon-green);
+      animation: float 6s ease-in-out infinite, glitch 2s infinite;
+    }
+
+    .quantum-message {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    /* Advanced Typewriter Effect */
+    .typewriter {
+      display: inline-block;
+      position: relative;
+    }
+    .typewriter::after {
+      content: '|';
+      position: absolute;
+      right: -0.5em;
+      animation: blink 0.7s infinite;
+      color: var(--neon-green);
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    /* Quantum Button */
+    .quantum-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--neon-green);
+      background: transparent;
+      border: 2px solid var(--neon-green);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.3),
+                  inset 0 0 10px rgba(0, 255, 204, 0.1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .quantum-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+                rgba(0, 255, 204, 0.1) 0%, 
+                rgba(0, 255, 204, 0.3) 50%, 
+                rgba(0, 255, 204, 0.1) 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: -1;
+    }
+    .quantum-btn:hover {
+      color: var(--dark-bg);
+      background: var(--neon-green);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.6),
+                  inset 0 0 15px rgba(0, 8, 20, 0.3);
+      transform: translateY(-3px);
+    }
+    .quantum-btn:hover::before {
+      transform: translateX(0);
+    }
+
+    /* Particle Network */
+    .particle-network {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Quantum Footer */
+    .quantum-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+      z-index: 10;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .quantum-card {
+        padding: 2rem;
+        border-radius: 16px;
+      }
+      .quantum-title {
+        margin-bottom: 1rem;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion) {
+      .quantum-title, .quantum-bg, .typewriter::after {
+        animation: none !important;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Quantum Background -->
+  <div class="quantum-bg"></div>
+  <canvas class="particle-network"></canvas>
 
-  <!-- Matrix Background -->
-  <canvas id="matrix"></canvas>
+  <!-- Main Content -->
+  <main class="quantum-container">
+    <div class="quantum-card">
+      <h1 class="quantum-title">Thank You!</h1>
+      <div class="quantum-message">
+        <span class="typewriter" id="typewriter">Your message has been successfully transmitted...</span>
+      </div>
+      <p class="quantum-message" style="opacity: 0;" id="secondary-message">I'll respond within 24 hours ⚡</p>
+      <a href="/" class="quantum-btn">Return to Portfolio</a>
+    </div>
+  </main>
 
-  <!-- Fixed Center Card -->
-  <div class="container" role="dialog" aria-labelledby="title" aria-describedby="desc">
-    <h1 id="title">Thank You! ✨</h1>
-    <div class="typing" id="typed">Your message has been sent successfully...</div>
-    <p id="desc" style="display:none;">I’ll get back to you very soon 🚀</p>
-    <a class="cta" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
-  </div>
+  <footer class="quantum-footer">
+    Message received at <span id="time"></span>
+  </footer>
 
+  <!-- Quantum JavaScript -->
   <script>
-    /* ---- Typewriter finish: keep full line visible, show second line ---- */
+    // Ultra-Performance Particle Network
     (function() {
-      const typed = document.getElementById("typed");
-      const second = document.getElementById("desc");
-      const DURATION = 3600; // match CSS typing 3.5s (buffer included)
-
-      setTimeout(() => {
-        typed.style.borderRight = "none"; // remove cursor
-        typed.style.width = "auto";       // ensure full text is visible and stable
-        second.style.display = "block";   // reveal second line
-      }, DURATION);
-    })();
-
-    /* ---- Confetti Generator (lightweight, non-blocking) ---- */
-    (function() {
-      const colors = ["#FFD700", "#FF69B4", "#00ffcc", "#00c6ff", "#32cd32"];
-      function drop() {
-        const el = document.createElement("div");
-        el.className = "confetti";
-        el.style.left = Math.random() * 100 + "vw";
-        const size = 6 + Math.random() * 10;
-        el.style.width = size + "px";
-        el.style.height = size * 1.4 + "px";
-        el.style.background = colors[(Math.random() * colors.length) | 0];
-        el.style.animationDuration = (3 + Math.random() * 3) + "s";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 6500);
-      }
-      const id = setInterval(drop, 300);
-      // stop after ~15s to avoid piling up (card remains fixed anyway)
-      setTimeout(() => clearInterval(id), 15000);
-    })();
-
-    /* ---- Matrix Background (fixed, responsive, smooth) ---- */
-    (function() {
-      const canvas = document.getElementById("matrix");
-      const ctx = canvas.getContext("2d");
-
+      const canvas = document.querySelector('.particle-network');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const particleCount = window.innerWidth < 768 ? 50 : 100;
+      
+      // Resize handler
       function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        initDrops();
+        initParticles();
       }
-
-      let fontSize = 14;
-      let columns, drops;
-
-      function initDrops() {
-        fontSize = Math.max(12, Math.min(18, Math.floor(canvas.width / 80)));
-        columns = Math.floor(canvas.width / fontSize);
-        drops = new Array(columns).fill(1);
-      }
-
-      const letters = "01";
-      function draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#00ffcc";
-        ctx.font = fontSize + "px monospace";
-
-        for (let i = 0; i < drops.length; i++) {
-          const text = letters.charAt(Math.random() * letters.length | 0);
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-          drops[i]++;
+      
+      // Particle class
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.5;
+          this.speedX = Math.random() * 2 - 1;
+          this.speedY = Math.random() * 2 - 1;
+          this.color = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
+          this.opacity = Math.random() * 0.6 + 0.1;
         }
-        requestAnimationFrame(draw);
+        
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          
+          // Boundary check
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.globalAlpha = this.opacity;
+          ctx.fill();
+        }
+        
+        connect(particles) {
+          particles.forEach(particle => {
+            const dx = this.x - particle.x;
+            const dy = this.y - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 150) {
+              ctx.beginPath();
+              ctx.strokeStyle = this.color;
+              ctx.globalAlpha = (1 - distance / 150) * 0.2;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(this.x, this.y);
+              ctx.lineTo(particle.x, particle.y);
+              ctx.stroke();
+            }
+          });
+        }
       }
-
-      window.addEventListener("resize", resize, { passive: true });
+      
+      // Initialize particles
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+      
+      // Animation loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update and draw particles
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+          particle.connect(particles);
+        });
+        
+        requestAnimationFrame(animate);
+      }
+      
+      // Start everything
+      window.addEventListener('resize', resize);
       resize();
-      requestAnimationFrame(draw);
+      animate();
+    })();
+
+    // Quantum Typewriter Effect
+    (function() {
+      const element = document.getElementById('typewriter');
+      const text = element.textContent;
+      element.textContent = '';
+      
+      let i = 0;
+      const speed = 50; // typing speed in ms
+      const secondaryMessage = document.getElementById('secondary-message');
+      
+      function typeWriter() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed + Math.random() * 50);
+        } else {
+          // Show secondary message
+          setTimeout(() => {
+            secondaryMessage.style.transition = 'opacity 1s ease';
+            secondaryMessage.style.opacity = '1';
+          }, 500);
+          
+          // Remove cursor
+          setTimeout(() => {
+            element.classList.remove('typewriter');
+          }, 1500);
+        }
+      }
+      
+      // Start typing after a short delay
+      setTimeout(typeWriter, 800);
+    })();
+
+    // Display current time
+    (function() {
+      const timeElement = document.getElementById('time');
+      function updateTime() {
+        const now = new Date();
+        timeElement.textContent = now.toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+    })();
+
+    // Quantum Hover Effect for Card
+    (function() {
+      const card = document.querySelector('.quantum-card');
+      const rect = card.getBoundingClientRect();
+      
+      card.addEventListener('mousemove', (e) => {
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const angleX = (y - centerY) / 20;
+        const angleY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      });
     })();
   </script>
 </body>
