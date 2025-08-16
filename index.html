@@ -10,78 +10,254 @@
     <link rel="stylesheet" href="css/glassmorphism.css">
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <style>
+        /* ===== ENHANCED BACKGROUND EFFECTS ===== */
+        :root {
+            --neon-green: #00ffcc;
+            --neon-blue: #00aaff;
+            --dark-bg: #000814;
+        }
+
+        /* Quantum Background */
+        .quantum-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 80, 120, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(120, 0, 80, 0.15) 0%, transparent 50%);
+            animation: hologram-pulse 12s infinite alternate;
+        }
+
+        @keyframes hologram-pulse {
+            0% { opacity: 0.3; filter: blur(2px); }
+            50% { opacity: 0.8; filter: blur(1px); }
+            100% { opacity: 0.3; filter: blur(2px); }
+        }
+
+        /* Particle Network Canvas */
+        .particle-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion) {
+            .quantum-bg {
+                animation: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
+    <!-- Enhanced Background Effects -->
+    <div class="quantum-bg"></div>
+    <canvas class="particle-network"></canvas>
     
-    <!-- Animated Gradient Border -->
+    <!-- Remove existing particles-js div -->
+    <!-- <div id="particles-js"></div> -->
+    
+    <!-- Rest of your HTML remains exactly the same -->
     <div class="gradient-border"></div>
-    
-    <!-- Floating Cursor Effect -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
-
-    <!-- Main Container -->
     <div class="container">
+        <!-- All your existing content -->
         <!-- Glass Navigation -->
         <header class="glass-nav">
             <div class="navbar">
                 <div class="logo" data-text=">_">>_</div>
                 <nav class="nav-links">
-                <ul>
-                    <li><a href="#about" class="nav-link hover-underline">About</a></li>
-                    <li><a href="#projects" class="nav-link hover-underline">Projects</a></li>
-                    <li><a href="#skills" class="nav-link hover-underline">Skills</a></li>
-                    <li><a href="#resume" class="nav-link hover-underline">Resume</a></li>
-                    <li><a href="#contact" class="nav-link hover-underline">Contact</a></li>
-                    <li>
-                        <button id="theme-toggle" class="icon-btn pulse">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </li>
-                </ul>
-            </nav>
-            <div class="menu-toggle">
-                <div class="hamburger"></div>
+                    <ul>
+                        <li><a href="#about" class="nav-link hover-underline">About</a></li>
+                        <li><a href="#projects" class="nav-link hover-underline">Projects</a></li>
+                        <li><a href="#skills" class="nav-link hover-underline">Skills</a></li>
+                        <li><a href="#resume" class="nav-link hover-underline">Resume</a></li>
+                        <li><a href="#contact" class="nav-link hover-underline">Contact</a></li>
+                        <li>
+                            <button id="theme-toggle" class="icon-btn pulse">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="menu-toggle">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
+        </header>
+<!-- Hero Section -->
+<section id="hero" class="hero-section">
+    <div class="hero-content">
+        <div class="hero-text" data-aos="fade-right">
+            <h4 class="subtitle">Software Developer</h4>
+            <h1 class="title glitch" data-text="Saquib Nazeer">Saquib Nazeer</h1>
+            <div class="typewriter-container">
+                <p class="typewriter" data-text='["Full-Stack Engineer", "Open Source Contributor", "Tech Speaker", "Problem Solver"]'></p>
+                <span class="typewriter-cursor">|</span>
+            </div>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary pulse-on-hover">View Work</a>
+                <a href="#contact" class="btn btn-outline hover-effect">Contact Me</a>
             </div>
         </div>
-    </header>
+        
+        <div class="hero-image" data-aos="fade-left">
+            <div class="image-wrapper">
+                <div class="circle-mask">
+                    <img src="assets/images/profile1.jpg" alt="Saquib Nazeer" class="profile-img">
+                </div>
+                <div class="image-border-animation"></div>
+                <div class="tech-icons">
+                    <i class="fab fa-java floating-icon" style="--delay: 0s"></i>
+                    <i class="fab fa-js floating-icon" style="--delay: 0.3s"></i>
+                    <i class="fab fa-python floating-icon" style="--delay: 0.6s"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="mouse"></div>
+        <span>Scroll Down</span>
+    </div>
+</section>
 
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <div class="hero-text" data-aos="fade-right">
-                    <h4 class="subtitle"> Software Developer</h4>
-                    <h1 class="title glitch" data-text="Alex Chen">Saquib Nazeer</h1></div>
-                    <div class="typewriter-container">
-                        <p class="typewriter" data-text='["Full-Stack Engineer", "Open Source Contributor", "Tech Speaker", "Problem Solver"]'></p>
-                        <span class="typewriter-cursor">|</span>
-                    </div>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary pulse-on-hover">View Work</a>
-                        <a href="#contact" class="btn btn-outline hover-effect">Contact Me</a>
-                    </div>
-                    
-                </div>
-                
-                <div class="hero-image" data-aos="fade-left">
-                    <div class="image-wrapper">
-                        <img src="assets/images/profile1.jpg" alt="Alex Chen" class="profile-img">
-                        <div class="image-border-animation"></div>
-                        <div class="tech-icons">
-                            <i class="fab fa-java floating-icon" style="--delay: 0s"></i>
-                            <i class="fab fa-js floating-icon" style="--delay: 0.3s"></i>
-                            <i class="fab fa-python floating-icon" style="--delay: 0.6s"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p><p><div class="scroll-indicator">
-                <div class="mouse"></div>
-                <span>Scroll Down</span></p></p>
-            </div>
-        </section>
+<style>
+    /* Navigation Bar Fix */
+    .glass-nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(0, 8, 20, 0.7);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Hero Section Layout */
+    .hero-section {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        padding-top: 80px; /* Added padding to account for fixed nav */
+        box-sizing: border-box;
+    }
+
+    .hero-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .hero-text {
+        flex: 1;
+        max-width: 600px;
+        text-align: left;
+        padding-top: 20px; /* Extra space for mobile */
+    }
+
+    .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+    }
+
+    .image-wrapper {
+        position: relative;
+        width: 350px;
+        height: 350px;
+    }
+
+    .circle-mask {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--neon-green);
+        box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+    }
+
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Scroll Indicator Positioning */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        text-align: center;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding-top: 70px; /* Less padding for mobile */
+            height: auto;
+            min-height: 100vh;
+        }
+        
+        .hero-content {
+            flex-direction: column;
+            text-align: center;
+            padding-top: 20px;
+        }
+        
+        .hero-text {
+            text-align: center;
+            max-width: 100%;
+            padding-top: 0;
+            order: 1;
+        }
+        
+        .hero-image {
+            justify-content: center;
+            margin: 2rem 0;
+            order: 2;
+            width: 100%;
+        }
+        
+        .image-wrapper {
+            width: 250px;
+            height: 250px;
+        }
+        
+        .scroll-indicator {
+            position: relative;
+            bottom: auto;
+            margin-top: 2rem;
+            order: 3;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-text h1 {
+            font-size: 2.5rem;
+        }
+        
+        .image-wrapper {
+            width: 200px;
+            height: 200px;
+        }
+    }
+</style>
 
         <!-- About Section -->
         <section id="about" class="section">
@@ -104,12 +280,12 @@
         </section>
 
         <!-- Projects Section -->
-<section id="projects" class="section">
-    <h2 class="section-title" data-aos="fade-up">Featured <span>Projects</span></h2>
-    <div class="projects-grid" id="projects-container">
-        <!-- Projects will be loaded from manualProjects.js -->
-    </div>
-</section>
+        <section id="projects" class="section">
+            <h2 class="section-title" data-aos="fade-up">Featured <span>Projects</span></h2>
+            <div class="projects-grid" id="projects-container">
+                <!-- Projects will be loaded from manualProjects.js -->
+            </div>
+        </section>
 
         <!-- Skills Section -->
         <section id="skills" class="section">
@@ -184,7 +360,7 @@
                                 <i class="fas fa-download"></i> Download PDF
                             </a>
                             <a href="https://www.linkedin.com/in/saquib-nazeer-2b3043326?trk=contact-info" target="_blank" class="btn btn-outline">
-                                | <i class="fab fa-linkedin-in"></i> | View LinkedIn
+                                <i class="fab fa-linkedin-in"></i> View LinkedIn
                             </a>
                         </div>
                     </div>
@@ -208,33 +384,29 @@
                 </div>
             </div>
         </section>
-    <section id="internships" class="internship-section">
-  <div class="internship-container">
-    <h2 class="internship-title">Internships</h2>
 
-    <!-- Internship Card -->
-    <article class="internship-card">
-      <header class="internship-head">
-        <h3 class="internship-company">ApexPlanet Software Pvt. Ltd.</h3>
-        <div class="internship-role">Web Developer Intern — PHP & MySQL</div>
-        <div class="internship-time">01 Jul 2025 – 15 Aug 2025 · Virtual</div>
-      </header>
-
-      <ul class="internship-points">
-        <li>Built and optimized PHP/MySQL modules for real‑world projects.</li>
-        <li>Implemented authentication and role‑based access; refined queries.</li>
-        <li>Collaborated via Git and code reviews; deployed to cloud.</li>
-      </ul>
-
-      <footer class="internship-meta">
-        <a class="internship-btn" href="https://www.linkedin.com/posts/saquibnazeer01_webdevelopment-php-mysql-activity-7362356585781735425-cmp0?utm_medium=ios_app&rcm=ACoAAFI7OecBNlTsvW-q7x_A6Fm4ej3LRHY6KmU&utm_source=social_share_video_v2&utm_campaign=copy_link">View Certificate</a>
-        <a class="internship-btn ghost" href="https://www.github.com/SaquibNazeer01" target="_blank" rel="noopener">Project Repo</a>
-      </footer>
-    </article>
-
-    <!-- Duplicate <article> for more internships -->
-  </div>
-</section>
+        <!-- Internships Section -->
+        <section id="internships" class="internship-section">
+            <div class="internship-container">
+                <h2 class="internship-title">Internships</h2>
+                <article class="internship-card">
+                    <header class="internship-head">
+                        <h3 class="internship-company">ApexPlanet Software Pvt. Ltd.</h3>
+                        <div class="internship-role">Web Developer Intern — PHP & MySQL</div>
+                        <div class="internship-time">01 Jul 2025 – 15 Aug 2025 · Virtual</div>
+                    </header>
+                    <ul class="internship-points">
+                        <li>Built and optimized PHP/MySQL modules for real-world projects.</li>
+                        <li>Implemented authentication and role-based access; refined queries.</li>
+                        <li>Collaborated via Git and code reviews; deployed to cloud.</li>
+                    </ul>
+                    <footer class="internship-meta">
+                        <a class="internship-btn" href="https://www.linkedin.com/posts/saquibnazeer01_webdevelopment-php-mysql-activity-7362356585781735425-cmp0?utm_medium=ios_app&rcm=ACoAAFI7OecBNlTsvW-q7x_A6Fm4ej3LRHY6KmU&utm_source=social_share_video_v2&utm_campaign=copy_link">View Certificate</a>
+                        <a class="internship-btn ghost" href="https://www.github.com/SaquibNazeer01" target="_blank" rel="noopener">Project Repo</a>
+                    </footer>
+                </article>
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section id="contact" class="section">
@@ -280,45 +452,45 @@
                         </div>
                     </div>
                 </div>
-               <div class="contact-form">
-    <form id="contactForm" action="https://formspree.io/f/xgvadyjk" method="POST">
-        <!-- Formspree hidden fields -->
-        <input type="hidden" name="_next" value="/thank-you.html">
-        <input type="hidden" name="_subject" value="New Message From Your Website">
-        <input type="text" name="_gotcha" style="display:none"> <!-- Anti-spam honeypot -->
-        
-        <h3>Send Me a Message</h3>
-        
-        <div class="form-group">
-            <input type="text" id="name" name="name" required placeholder=" ">
-            <label for="name">Your Name</label>
-            <div class="focus-border"></div>
-        </div>
-        
-        <div class="form-group">
-            <input type="email" id="email" name="email" required placeholder=" ">
-            <label for="email">Your Email</label>
-            <div class="focus-border"></div>
-        </div>
-        
-        <div class="form-group">
-            <input type="text" id="subject" name="subject" required placeholder=" ">
-            <label for="subject">Subject</label>
-            <div class="focus-border"></div>
-        </div>
-        
-        <div class="form-group">
-            <textarea id="message" name="message" required placeholder=" "></textarea>
-            <label for="message">Your Message</label>
-            <div class="focus-border"></div>
-        </div>
-        
-        <button type="submit" class="btn btn-primary btn-submit">
-            <span>Send Message</span>
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </form>
-</div>
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xgvadyjk" method="POST">
+                        <input type="hidden" name="_next" value="/thank-you.html">
+                        <input type="hidden" name="_subject" value="New Message From Your Website">
+                        <input type="text" name="_gotcha" style="display:none">
+                        
+                        <h3>Send Me a Message</h3>
+                        
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                            <div class="focus-border"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                            <div class="focus-border"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required placeholder=" ">
+                            <label for="subject">Subject</label>
+                            <div class="focus-border"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" required placeholder=" "></textarea>
+                            <label for="message">Your Message</label>
+                            <div class="focus-border"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -345,9 +517,6 @@
                     <a href="https://instagram.com/Bhat_Saakib019" target="_blank" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://facebook.com/Bhatsaakib019" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -359,14 +528,106 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/scrollEffects.js"></script>
     <script src="js/terminal.js"></script>
     <script src="js/manualProjects.js"></script>
     <script>hljs.highlightAll();</script>
+
+    <!-- Quantum Particle Network Script -->
+    <script>
+        // ===== QUANTUM PARTICLE NETWORK =====
+        (function() {
+            const canvas = document.querySelector('.particle-network');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleCount = window.innerWidth < 768 ? 60 : 120;
+            
+            // Resize handler
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            }
+            
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = Math.random() * 2 - 1;
+                    this.speedY = Math.random() * 2 - 1;
+                    this.color = `hsl(${Math.random() * 60 + 180}, 100%, 70%)`;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                
+                update() {
+                    this.x += this.speedX * 0.5;
+                    this.y += this.speedY * 0.5;
+                    
+                    // Boundary check (bounce)
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = this.opacity;
+                    ctx.fill();
+                }
+                
+                connect(particles) {
+                    particles.forEach(particle => {
+                        const dx = this.x - particle.x;
+                        const dy = this.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 150) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = this.color;
+                            ctx.globalAlpha = (1 - distance / 150) * 0.2;
+                            ctx.lineWidth = 0.7;
+                            ctx.moveTo(this.x, this.y);
+                            ctx.lineTo(particle.x, particle.y);
+                            ctx.stroke();
+                        }
+                    });
+                }
+            }
+            
+            // Initialize particles
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            
+            // Animation loop (60FPS optimized)
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                    particle.connect(particles);
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start everything
+            window.addEventListener('resize', resize);
+            resize();
+            animate();
+        })();
+
+        // Current year for footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
-
-
-
