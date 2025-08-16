@@ -5,103 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You!</title>
   <style>
-    /* Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at 30% 30%, #1a1a40, #000000 90%);
+      background: #000;
+      font-family: 'Segoe UI', Consolas, monospace;
       overflow: hidden;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #00ffcc;
     }
 
-    /* Glowing background orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.5;
-      animation: float 12s infinite alternate ease-in-out;
-    }
-    .orb.one { width: 400px; height: 400px; background: #6c63ff; top: -10%; left: -10%; }
-    .orb.two { width: 300px; height: 300px; background: #00c6ff; bottom: -10%; right: -10%; }
-
-    @keyframes float {
-      from { transform: translateY(0px) translateX(0px); }
-      to   { transform: translateY(60px) translateX(40px); }
+    /* Matrix Background Canvas */
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
     }
 
-    /* Glassmorphism card */
+    /* Container */
     .container {
       position: relative;
       z-index: 2;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0,255,200,0.3);
       padding: 3rem 4rem;
-      border-radius: 20px;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
       text-align: center;
-      color: #fff;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 0 30px rgba(0,255,200,0.4);
       animation: fadeIn 1.4s ease forwards;
     }
 
+    /* Glitch Title */
     h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      color: #fff;
-      text-shadow: 0 0 20px rgba(108,99,255,0.8);
+      color: #00ffcc;
+      position: relative;
+      text-shadow: 0 0 15px #00ffcc;
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red, -2px -2px blue; }
+      20% { text-shadow: -2px 2px lime, 2px -2px pink; }
+      40% { text-shadow: 2px -2px cyan, -2px 2px magenta; }
+      60% { text-shadow: 1px 1px yellow, -1px -1px purple; }
+      100% { text-shadow: 0 0 15px #00ffcc; }
     }
 
+    /* Typewriter Effect */
     .typing {
       display: inline-block;
-      border-right: 3px solid #fff;
       white-space: nowrap;
       overflow: hidden;
-      animation: typing 3.5s steps(30, end), blink .7s step-end infinite;
       font-size: 1.2rem;
-      color: #cfd6ff;
+      margin-top: 1rem;
+      color: #e0fff9;
+      border-right: 3px solid #00ffcc; /* typing cursor */
+      animation: typing 3.5s steps(40, end) forwards; /* runs once */
     }
-
     @keyframes typing {
       from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
+      to   { width: 100% }
     }
 
     p {
       margin-top: 1rem;
-      color: #aeb6ff;
       font-size: 1rem;
+      color: #9fffea;
     }
 
+    /* Neon Button */
     a {
       display: inline-block;
       margin-top: 2rem;
       padding: 14px 28px;
       border-radius: 50px;
-      background: linear-gradient(90deg, #6c63ff, #00c6ff);
-      color: #fff;
+      background: transparent;
+      color: #00ffcc;
       font-weight: 700;
       text-decoration: none;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 18px rgba(108,99,255,0.7);
+      border: 2px solid #00ffcc;
+      letter-spacing: 1px;
+      box-shadow: 0 0 12px #00ffcc, inset 0 0 8px #00ffcc;
       transition: all 0.3s ease;
+      animation: pulse 2s infinite;
     }
-
     a:hover {
-      box-shadow: 0 0 35px rgba(0,198,255,0.9);
+      background: #00ffcc;
+      color: #000;
       transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 25px #00ffcc, inset 0 0 12px #000;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 8px #00ffcc; }
+      50% { box-shadow: 0 0 25px #00ffcc; }
+      100% { box-shadow: 0 0 8px #00ffcc; }
     }
 
-    /* Entry animation */
+    /* Entry Animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.8) translateY(40px); }
       to   { opacity: 1; transform: scale(1) translateY(0); }
@@ -114,8 +119,8 @@
       top: -20px;
       opacity: 0.9;
       animation: fall linear forwards;
+      z-index: 3;
     }
-
     @keyframes fall {
       to { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
     }
@@ -123,40 +128,73 @@
 </head>
 <body>
 
-  <!-- Background orbs -->
-  <div class="orb one"></div>
-  <div class="orb two"></div>
+  <!-- Matrix Background -->
+  <canvas id="matrix"></canvas>
 
-  <!-- Main Thank You Card -->
+  <!-- Main Card -->
   <div class="container">
     <h1>Thank You! ✨</h1>
-    <div class="typing">Your message has been sent successfully...</div>
-    <p>I’ll get back to you very soon 🚀</p>
+    <div class="typing" id="typed-text">Your message has been sent successfully...</div>
+    <p id="second-line" style="display:none;">I’ll get back to you very soon 🚀</p>
     <a href="index.html">← Back to Portfolio</a>
   </div>
 
-  <!-- Confetti Generator -->
   <script>
+    /* Remove typing cursor when finished */
+    const typed = document.getElementById("typed-text");
+    const secondLine = document.getElementById("second-line");
+
+    setTimeout(() => {
+      typed.style.borderRight = "none"; // remove cursor
+      secondLine.style.display = "block"; // show second line after typing finishes
+    }, 3600);
+
+    /* Confetti Generator */
     function createConfetti() {
       const confetti = document.createElement("div");
       confetti.classList.add("confetti");
       document.body.appendChild(confetti);
-
       const size = Math.random() * 8 + 6;
       confetti.style.width = size + "px";
       confetti.style.height = size * 1.4 + "px";
       confetti.style.left = Math.random() * window.innerWidth + "px";
-
-      const colors = ["#FFD700", "#FF69B4", "#6c63ff", "#00c6ff", "#32cd32"];
+      const colors = ["#FFD700", "#FF69B4", "#00ffcc", "#00c6ff", "#32cd32"];
       confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
       confetti.style.animationDuration = 3 + Math.random() * 3 + "s";
-
       setTimeout(() => confetti.remove(), 6000);
     }
+    setInterval(createConfetti, 300);
 
-    setInterval(createConfetti, 200);
+    /* Matrix Background Effect */
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    for (let i = 0; i < columns; i++) drops[i] = 1;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ffcc";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 33);
+
+    window.addEventListener("resize", () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
   </script>
-
 </body>
 </html>
