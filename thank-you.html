@@ -1,50 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thank You!</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin: 0;
       background: #000;
-      font-family: 'Segoe UI', Consolas, monospace;
-      overflow: hidden;
       color: #00ffcc;
+      font-family: "Segoe UI", Consolas, monospace;
+      overflow: hidden;           /* no scroll bounce */
+      height: 100svh;             /* mobile-safe viewport */
     }
 
-    /* Matrix Background Canvas */
-    canvas {
+    /* Background Matrix Canvas */
+    #matrix {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
+      pointer-events: none;       /* never blocks clicks */
+      user-select: none;
     }
 
-    /* Container */
+    /* Confetti pieces */
+    .confetti {
+      position: fixed;
+      top: -5vh;
+      width: 8px; height: 14px;
+      opacity: 0.9;
+      z-index: 3;
+      pointer-events: none;       /* never blocks clicks */
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(115vh) rotate(360deg); opacity: .7; }
+    }
+
+    /* Center-locked Card (never shifts) */
     .container {
-      position: relative;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* perfect center */
       z-index: 2;
+      width: clamp(320px, 90vw, 680px); /* stable width */
+      padding: 3rem 4rem;
+      text-align: center;
       background: rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(0,255,200,0.3);
-      padding: 3rem 4rem;
       border-radius: 16px;
       backdrop-filter: blur(12px);
-      text-align: center;
       box-shadow: 0 0 30px rgba(0,255,200,0.4);
-      animation: fadeIn 1.4s ease forwards;
+      animation: fadeIn 0.9s ease forwards;
+      will-change: transform; /* crisp centering */
     }
 
     /* Glitch Title */
     h1 {
-      font-size: 3rem;
-      font-weight: 700;
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
       color: #00ffcc;
-      position: relative;
       text-shadow: 0 0 15px #00ffcc;
       animation: glitch 1s infinite;
     }
@@ -56,16 +78,16 @@
       100% { text-shadow: 0 0 15px #00ffcc; }
     }
 
-    /* Typewriter Effect */
+    /* Typewriter line (stays after finish) */
     .typing {
       display: inline-block;
       white-space: nowrap;
       overflow: hidden;
-      font-size: 1.2rem;
-      margin-top: 1rem;
+      font-size: clamp(14px, 2.2vw, 20px);
       color: #e0fff9;
-      border-right: 3px solid #00ffcc; /* typing cursor */
-      animation: typing 3.5s steps(40, end) forwards; /* runs once */
+      border-right: 3px solid #00ffcc;            /* cursor */
+      animation: typing 3.5s steps(40, end) forwards;
+      max-width: 100%;                             /* prevent overflow */
     }
     @keyframes typing {
       from { width: 0 }
@@ -73,56 +95,47 @@
     }
 
     p {
-      margin-top: 1rem;
-      font-size: 1rem;
+      margin: 12px 0 0;
+      font-size: clamp(13px, 2vw, 18px);
       color: #9fffea;
     }
 
-    /* Neon Button */
-    a {
+    /* Neon CTA */
+    a.cta {
       display: inline-block;
-      margin-top: 2rem;
+      margin-top: 22px;
       padding: 14px 28px;
       border-radius: 50px;
       background: transparent;
       color: #00ffcc;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
       border: 2px solid #00ffcc;
       letter-spacing: 1px;
       box-shadow: 0 0 12px #00ffcc, inset 0 0 8px #00ffcc;
-      transition: all 0.3s ease;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
       animation: pulse 2s infinite;
     }
-    a:hover {
+    a.cta:hover {
       background: #00ffcc;
       color: #000;
       transform: translateY(-4px) scale(1.05);
       box-shadow: 0 0 25px #00ffcc, inset 0 0 12px #000;
     }
     @keyframes pulse {
-      0% { box-shadow: 0 0 8px #00ffcc; }
-      50% { box-shadow: 0 0 25px #00ffcc; }
+      0%   { box-shadow: 0 0 8px #00ffcc; }
+      50%  { box-shadow: 0 0 25px #00ffcc; }
       100% { box-shadow: 0 0 8px #00ffcc; }
     }
 
-    /* Entry Animation */
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8) translateY(40px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
+      from { opacity: 0; transform: translate(-50%, calc(-50% + 30px)); }
+      to   { opacity: 1; transform: translate(-50%, -50%); }
     }
 
-    /* Confetti */
-    .confetti {
-      position: absolute;
-      width: 8px; height: 14px;
-      top: -20px;
-      opacity: 0.9;
-      animation: fall linear forwards;
-      z-index: 3;
-    }
-    @keyframes fall {
-      to { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+    /* Accessibility: reduce motion if user prefers */
+    @media (prefers-reduced-motion: reduce) {
+      .container, h1, .typing, .confetti, .cta { animation: none !important; }
     }
   </style>
 </head>
@@ -131,70 +144,89 @@
   <!-- Matrix Background -->
   <canvas id="matrix"></canvas>
 
-  <!-- Main Card -->
-  <div class="container">
-    <h1>Thank You! ✨</h1>
-    <div class="typing" id="typed-text">Your message has been sent successfully...</div>
-    <p id="second-line" style="display:none;">I’ll get back to you very soon 🚀</p>
-    <a href="index.html">← Back to Portfolio</a>
+  <!-- Fixed Center Card -->
+  <div class="container" role="dialog" aria-labelledby="title" aria-describedby="desc">
+    <h1 id="title">Thank You! ✨</h1>
+    <div class="typing" id="typed">Your message has been sent successfully...</div>
+    <p id="desc" style="display:none;">I’ll get back to you very soon 🚀</p>
+    <a class="cta" href="index.html" aria-label="Back to Portfolio">← Back to Portfolio</a>
   </div>
 
   <script>
-    /* Remove typing cursor when finished */
-    const typed = document.getElementById("typed-text");
-    const secondLine = document.getElementById("second-line");
+    /* ---- Typewriter finish: keep full line visible, show second line ---- */
+    (function() {
+      const typed = document.getElementById("typed");
+      const second = document.getElementById("desc");
+      const DURATION = 3600; // match CSS typing 3.5s (buffer included)
 
-    setTimeout(() => {
-      typed.style.borderRight = "none"; // remove cursor
-      secondLine.style.display = "block"; // show second line after typing finishes
-    }, 3600);
+      setTimeout(() => {
+        typed.style.borderRight = "none"; // remove cursor
+        typed.style.width = "auto";       // ensure full text is visible and stable
+        second.style.display = "block";   // reveal second line
+      }, DURATION);
+    })();
 
-    /* Confetti Generator */
-    function createConfetti() {
-      const confetti = document.createElement("div");
-      confetti.classList.add("confetti");
-      document.body.appendChild(confetti);
-      const size = Math.random() * 8 + 6;
-      confetti.style.width = size + "px";
-      confetti.style.height = size * 1.4 + "px";
-      confetti.style.left = Math.random() * window.innerWidth + "px";
+    /* ---- Confetti Generator (lightweight, non-blocking) ---- */
+    (function() {
       const colors = ["#FFD700", "#FF69B4", "#00ffcc", "#00c6ff", "#32cd32"];
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDuration = 3 + Math.random() * 3 + "s";
-      setTimeout(() => confetti.remove(), 6000);
-    }
-    setInterval(createConfetti, 300);
-
-    /* Matrix Background Effect */
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-
-    const letters = "01";
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    for (let i = 0; i < columns; i++) drops[i] = 1;
-
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#00ffcc";
-      ctx.font = fontSize + "px monospace";
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
+      function drop() {
+        const el = document.createElement("div");
+        el.className = "confetti";
+        el.style.left = Math.random() * 100 + "vw";
+        const size = 6 + Math.random() * 10;
+        el.style.width = size + "px";
+        el.style.height = size * 1.4 + "px";
+        el.style.background = colors[(Math.random() * colors.length) | 0];
+        el.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 6500);
       }
-    }
-    setInterval(draw, 33);
+      const id = setInterval(drop, 300);
+      // stop after ~15s to avoid piling up (card remains fixed anyway)
+      setTimeout(() => clearInterval(id), 15000);
+    })();
 
-    window.addEventListener("resize", () => {
-      canvas.height = window.innerHeight;
-      canvas.width = window.innerWidth;
-    });
+    /* ---- Matrix Background (fixed, responsive, smooth) ---- */
+    (function() {
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initDrops();
+      }
+
+      let fontSize = 14;
+      let columns, drops;
+
+      function initDrops() {
+        fontSize = Math.max(12, Math.min(18, Math.floor(canvas.width / 80)));
+        columns = Math.floor(canvas.width / fontSize);
+        drops = new Array(columns).fill(1);
+      }
+
+      const letters = "01";
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#00ffcc";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters.charAt(Math.random() * letters.length | 0);
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener("resize", resize, { passive: true });
+      resize();
+      requestAnimationFrame(draw);
+    })();
   </script>
 </body>
 </html>
