@@ -1,35 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You!</title>
-    <style>
-        body { 
-            font-family: 'Arial', sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            background: #f5f5f5;
-            text-align: center;
-        }
-        .container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        h1 { color: #6c63ff; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You!</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #6c63ff, #00c6ff);
+      overflow: hidden;
+      color: #fff;
+    }
+
+    /* Container */
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      animation: popIn 1s ease forwards;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #e3e6ff;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 12px 24px;
+      border-radius: 50px;
+      background: #fff;
+      color: #6c63ff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    a:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Confetti animation */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      background: #fff;
+      opacity: 0.9;
+      top: -20px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Thank You! ✨</h1>
-        <p>Your message has been sent successfully.</p>
-        <p>I'll get back to you soon.</p>
-        <a href="index.html" style="color: #6c63ff;">← Return to Portfolio</a>
-    </div>
+
+  <div class="container">
+    <h1>Thank You! ✨</h1>
+    <p>Your message has been sent successfully.</p>
+    <p>I’ll get back to you soon.</p>
+    <a href="index.html">← Return to Portfolio</a>
+  </div>
+
+  <!-- Confetti Generator -->
+  <script>
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      document.body.appendChild(confetti);
+
+      const size = Math.random() * 8 + 6;
+      confetti.style.width = size + "px";
+      confetti.style.height = size * 1.4 + "px";
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+
+      const colors = ["#FFD700", "#FF69B4", "#6c63ff", "#00c6ff", "#32cd32"];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      confetti.style.animationDuration = 3 + Math.random() * 3 + "s";
+
+      setTimeout(() => confetti.remove(), 6000);
+    }
+
+    setInterval(createConfetti, 200);
+  </script>
 </body>
 </html>
